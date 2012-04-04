@@ -1,0 +1,38 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>Provider</th>
+    <th>Uid</th>
+    <th>Access Token</th>
+    <th>Secret</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.provider %></td>
+    <td><%= user.uid %></td>
+    <td><%= user.access_token %></td>
+    <td><%= user.secret %></td>
+    <td><%= link_to 'Show', user %></td>
+    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_user_path %>
+<br/><hr/>
+<%= link_to 'Google Auth', "/auth/google" %><br/>
+<%= link_to 'Google OAuth 2', "/auth/google_oauth2" %><br/>
+<hr/>
+curl https://gdata.youtube.com/feeds/api/users/default -H 'Authorization: OAuth ya29.<long stuff>'
+<br/>
+note, Oauth2 has no return secret!!!
+<br/>
+Setup Oauth2 here -> https://code.google.com/apis/console/b/0/?pli=1#project:493990380024:access
